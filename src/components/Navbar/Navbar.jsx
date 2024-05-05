@@ -49,7 +49,7 @@ const Navbar = () => {
               {navlinks}
             </ul>
           </div>
-          <Link className="btn btn-ghost normal-case text-xl mb-6">
+          <Link className="btn btn-ghost normal-case text-xl mb-10">
             <img src={logo} alt="" />
           </Link>
         </div>
