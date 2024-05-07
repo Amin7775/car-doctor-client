@@ -10,6 +10,7 @@ import Register from "../Pages/Register/Register";
 // import CheckOut from "../Pages/Home/CheckOut/CheckOut";
 import BookService from "../Pages/Home/BookService/Bookservice";
 import Bookings from "../Pages/Bookings/Bookings";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -46,12 +47,12 @@ const router = createBrowserRouter([
         },
         {
           path: "/checkout/:id",
-          element: <BookService></BookService>,
+          element: <PrivateRoute><BookService></BookService></PrivateRoute>,
           loader: ({params})=>fetch(`http://localhost:5000/services/${params.id}`)
         },
         {
           path: "/bookings",
-          element: <Bookings></Bookings>
+          element: <PrivateRoute><Bookings></Bookings></PrivateRoute>
         }
       ]
     },
