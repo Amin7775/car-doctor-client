@@ -1,47 +1,50 @@
 import { useContext } from 'react';
 import { useLoaderData } from 'react-router';
-import { AuthContext } from '../../providers/AuthProvider';
+import { AuthContext } from '../../../Provider/AuthProvider';
+
 
 const BookService = () => {
     const service = useLoaderData();
     const { title, _id, price, img } = service;
-    const {user} = useContext(AuthContext);
+    const {user} = useContext(AuthContext)
+  
+    console.log(user)
+    const handleBookService = event =>{
+        event.preventDefault();
 
-    // const handleBookService = event =>{
-    //     event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const date = form.date.value;
+        const email = user?.email;
+        const booking = {
+            customerName: name, 
+            email, 
+            img,
+            date, 
+            service: title,
+            service_id: _id, 
+            price: price
+        }
+        
 
-    //     const form = event.target;
-    //     const name = form.name.value;
-    //     const date = form.date.value;
-    //     const email = user?.email;
-    //     const booking = {
-    //         customerName: name, 
-    //         email, 
-    //         img,
-    //         date, 
-    //         service: title,
-    //         service_id: _id, 
-    //         price: price
-    //     }
+        // console.log(booking);
 
-    //     console.log(booking);
+        // fetch('http://localhost:5000/bookings', {
+        //     method: 'POST', 
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     }, 
+        //     body: JSON.stringify(booking)
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+        //     console.log(data);
+        //     if(data.insertedId){
+        //         alert('service book successfully')
+        //     }
+        // })
 
-    //     fetch('http://localhost:5000/bookings', {
-    //         method: 'POST', 
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         }, 
-    //         body: JSON.stringify(booking)
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data);
-    //         if(data.insertedId){
-    //             alert('service book successfully')
-    //         }
-    //     })
-
-    // }
+    }
 
     return (
         <div>

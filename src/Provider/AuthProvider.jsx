@@ -25,7 +25,10 @@ const AuthProvider = ({children}) => {
             setUser(currentUser);
             setLoading(false)
         })
-        return unSubscribe();
+        return ()=>{
+            return unSubscribe();
+        } 
+            
     },[])
 
     const authInfo = {
