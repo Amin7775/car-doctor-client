@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "./../../assets/logo.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -6,6 +6,12 @@ import { AuthContext } from "../../Provider/AuthProvider";
 const Navbar = () => {
 
   const {user,logOut} = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  const handleLogout =()=>{
+    logOut()
+    navigate('/')
+  }
 
   const navlinks = (
     <>
@@ -72,7 +78,7 @@ const Navbar = () => {
         {
           user ?
           <div className="navbar-end">
-          <button onClick={()=>logOut()} className="btn btn-outline btn-error">logout </button>
+          <button onClick={()=>handleLogout()} className="btn btn-outline btn-error">logout </button>
         </div> 
         :
         <div className="navbar-end">

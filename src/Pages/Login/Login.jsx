@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom';
 import loginImg from './../../assets/images/login/login.svg'
 import { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
+import axios from 'axios';
 
 
 const Login = () => {
 
-  const {signIn}=useContext(AuthContext)
+  const {signIn,user}=useContext(AuthContext)
     
     const handleLogin = e =>{
         e.preventDefault();
@@ -16,7 +17,12 @@ const Login = () => {
 
         console.log(email,password);
         signIn(email,password)
-        .then(res => console.log(res))
+        .then(res => {
+          const loggedInUser = res.user;
+          console.log(user)
+          // const user = {email};
+          
+        })
         .catch(error => console.log(error.message))
     }
   return (
